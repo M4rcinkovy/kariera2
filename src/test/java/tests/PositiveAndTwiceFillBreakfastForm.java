@@ -31,12 +31,9 @@ public class PositiveAndTwiceFillBreakfastForm extends TestBase {
                 .clickOnCheckboxLabelField()
                 .clickOnSignUpButton();
 
-        String warningMessage = stronaGlowna.getPositiveFormMessage();
-        assertEquals(warningMessage, "Twoje zgłoszenie zostało zapisane. Dziękujemy!");
-
-        stronaGlowna.clickOnSignUpButton();
-
-        String warningMessage1 = stronaGlowna.getSameMailFormMessage();
-        assertEquals(warningMessage1, "Gdyby tylko się dało zapisać twój mail dwa razy :D");
+        stronaGlowna
+                .getPositiveFormMessage("Twoje zgłoszenie zostało zapisane. Dziękujemy!")
+                .clickOnSignUpButton()
+                .getSameMailFormMessage("Gdyby tylko się dało zapisać twój mail dwa razy :D");
     }
 }

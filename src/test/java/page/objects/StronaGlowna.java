@@ -96,6 +96,24 @@ public class StronaGlowna{
         return this;
     }
 
+    public StronaGlowna isFormIsActive() {
+        WaitForElement.waitUntilElementIsVisible(isFormActive);
+        assertThat(isFormActive).isDisplayed();
+        return this;
+    }
+
+    public StronaGlowna isImageOneVisible(){
+        WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormOne);
+        assertThat(pictureBreakfastFormOne).isDisplayed();
+        return this;
+    }
+
+    public StronaGlowna isImageTwoVisible(){
+        WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormTwo);
+        assertThat(pictureBreakfastFormTwo).isDisplayed();
+        return this;
+    }
+
     public StronaGlowna typeIntoNameField (String nameBreakfast) {
         WaitForElement.waitUntilElementIsVisible(nameField);
         nameField.sendKeys(nameBreakfast);
@@ -182,25 +200,25 @@ public class StronaGlowna{
         return this;
     }
 
-    public StronaGlowna getInvalidFormMessage(String cokolwiek) {
-        logger.info("CHECKING IF warning message {} is displayed", cokolwiek);
+    public StronaGlowna getInvalidFormMessage(String errorHasText) {
+        logger.info("CHECKING IF warning message {} is displayed", errorHasText);
         WaitForElement.waitUntilElementIsVisible(invalidResponse);
-        AssertWebElement.assertThat(invalidResponse).isDisplayed().hasText(cokolwiek);
+        AssertWebElement.assertThat(invalidResponse).isDisplayed().hasText(errorHasText);
         return this;
     }
 
-    public String getPositiveFormMessage() {
+    public StronaGlowna getPositiveFormMessage(String correctHasText) {
+        logger.info("CHECKING if correct message {} is displayed", correctHasText);
         WaitForElement.waitUntilElementIsVisible(successResponse);
-        String warning = successResponse.getText();
-        logger.info("Returned warning message was:{}", warning);
-        return warning;
+        AssertWebElement.assertThat(successResponse).isDisplayed().hasText(correctHasText);
+        return this;
     }
 
-    public String getSameMailFormMessage() {
+    public StronaGlowna getSameMailFormMessage(String doubleMailHasText) {
+        logger.info("CHECKING IF same mail try to send twice:{} ", doubleMailHasText);
         WaitForElement.waitUntilElementIsVisible(alreadySubscrivedError);
-        String warning = alreadySubscrivedError.getText();
-        logger.info("Returned warning message was:{} ", warning);
-        return warning;
+        AssertWebElement.assertThat(alreadySubscrivedError).isDisplayed().hasText(doubleMailHasText);
+        return this;
     }
 
     public OfertyPracy clickOnOfertyPracy() {
@@ -208,24 +226,6 @@ public class StronaGlowna{
         ofertyPracyMenuField.click();
         logger.info("Clicked on 'Oferty Pracy' Navigation Menu");
         return new OfertyPracy();
-    }
-
-    public StronaGlowna isFormIsActive() {
-        WaitForElement.waitUntilElementIsVisible(isFormActive);
-        assertThat(isFormActive).isDisplayed();
-        return this;
-    }
-
-    public StronaGlowna isImageOneVisible(){
-        WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormOne);
-        assertThat(pictureBreakfastFormOne).isDisplayed();
-        return this;
-    }
-
-    public StronaGlowna isImageTwoVisible(){
-        WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormTwo);
-        assertThat(pictureBreakfastFormTwo).isDisplayed();
-        return this;
     }
 }
 
