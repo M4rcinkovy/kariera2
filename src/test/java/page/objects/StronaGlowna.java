@@ -77,18 +77,14 @@ public class StronaGlowna{
     public StronaGlowna videoFieldIs() {
         WaitForElement.waitUntilElementIsVisible(videoMenuField);
         assertThat(videoMenuField).isDisplayed();
-        //boolean isVideoDisplayed = videoMenuField.isDisplayed();
-        //logger.info("Czy Video sie pokazuje: {}", isVideoDisplayed);
         return this;
-        //return isVideoDisplayed;
+
     }
 
     @Step("Czy na stronie sa pokazywane cookiesy")
     public StronaGlowna isCookieShow() {
         WaitForElement.waitUntilElementIsVisible(cookieButton);
         assertThat(cookieButton).isDisplayed();
-        //boolean isCookieButtonDisplayed = cookieButton.isDisplayed();
-        //logger.info("Czy pokazują sie COOKIES'y i czy mozna kliknac button'a: {}", isCookieButtonDisplayed);
         return this;
     }
 
