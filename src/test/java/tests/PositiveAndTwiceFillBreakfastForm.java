@@ -5,8 +5,6 @@ import org.testng.annotations.Test;
 import page.objects.StronaGlowna;
 
 import static navigation.ApplicationURLs.APPLICATION_URL;
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
 
 public class PositiveAndTwiceFillBreakfastForm extends TestBase {
 
@@ -16,12 +14,12 @@ public class PositiveAndTwiceFillBreakfastForm extends TestBase {
 
         StronaGlowna stronaGlowna = new StronaGlowna();
         stronaGlowna
-                .videoFieldIs()
-                .isCookieShow()
+                .assertIsVideoPlayerShow()
+                .assertIsCookieBarShow()
                 .clickOnCookieButtonPopUp()
-                .isFormIsActive()
-                .isImageOneVisible()
-                .isImageTwoVisible()
+                .assertIsFormIsActive()
+                .assertIsImageOneVisible()
+                .assertIsImageTwoVisible()
                 .typeIntoNameField("Mar")
                 .typeIntoSurnameField("Cin")
                 .typeIntoEmailField("mmolenda@future-processing.com")
@@ -29,9 +27,7 @@ public class PositiveAndTwiceFillBreakfastForm extends TestBase {
                 .zczytanieListingTest()
                 .dropDownListingTest()
                 .clickOnCheckboxLabelField()
-                .clickOnSignUpButton();
-
-        stronaGlowna
+                .clickOnSignUpButton()
                 .getPositiveFormMessage("Twoje zgłoszenie zostało zapisane. Dziękujemy!")
                 .clickOnSignUpButton()
                 .getSameMailFormMessage("Gdyby tylko się dało zapisać twój mail dwa razy :D");

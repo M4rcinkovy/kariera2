@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import page.objects.StronaGlowna;
 
 import static navigation.ApplicationURLs.APPLICATION_URL;
-import static org.testng.AssertJUnit.*;
 
 public class FailedFillBreakfastForm extends TestBase {
 
@@ -15,12 +14,12 @@ public class FailedFillBreakfastForm extends TestBase {
 
         StronaGlowna stronaGlowna = new StronaGlowna();
         stronaGlowna
-                .videoFieldIs()
-                .isCookieShow()
+                .assertIsVideoPlayerShow()
+                .assertIsCookieBarShow()
                 .clickOnCookieButtonPopUp()
-                .isFormIsActive()
-                .isImageOneVisible()
-                .isImageTwoVisible()
+                .assertIsFormIsActive()
+                .assertIsImageOneVisible()
+                .assertIsImageTwoVisible()
                 .typeIntoNameField("User Selenium")
                 .typeIntoSurnameField("Test")
                 .typeIntoEmailField("asd@a")
@@ -28,9 +27,7 @@ public class FailedFillBreakfastForm extends TestBase {
                 .zczytanieListingTest()
                 .dropDownListingTest()
                 .clickOnCheckboxLabelField()
-                .clickOnSignUpButton();
-
-        stronaGlowna
+                .clickOnSignUpButton()
                 .getInvalidFormMessage("Niepoprawny mail. Spróbuj jeszcze raz.");
 
     }

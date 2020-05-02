@@ -59,7 +59,7 @@ public class StronaGlowna{
     private WebElement successResponse;
 
     @FindBy(className = "o-Newsletter__Response--AlreadySubscribed")
-    private WebElement alreadySubscrivedError;
+    private WebElement alreadySubscribedError;
 
     @FindBy(className = "s-Form__Meeting")
     private WebElement isFormActive;
@@ -75,14 +75,14 @@ public class StronaGlowna{
     }
 
     @Step("Czy video jest wyswietlane na stronie")
-    public StronaGlowna videoFieldIs() {
+    public StronaGlowna assertIsVideoPlayerShow() {
         WaitForElement.waitUntilElementIsVisible(videoMenuField);
         assertThat(videoMenuField).isDisplayed();
         return this;
     }
 
     @Step("Czy na stronie sa pokazywane cookiesy")
-    public StronaGlowna isCookieShow() {
+    public StronaGlowna assertIsCookieBarShow() {
         WaitForElement.waitUntilElementIsVisible(cookieButton);
         assertThat(cookieButton).isDisplayed();
         return this;
@@ -96,19 +96,19 @@ public class StronaGlowna{
         return this;
     }
 
-    public StronaGlowna isFormIsActive() {
+    public StronaGlowna assertIsFormIsActive() {
         WaitForElement.waitUntilElementIsVisible(isFormActive);
         assertThat(isFormActive).isDisplayed();
         return this;
     }
 
-    public StronaGlowna isImageOneVisible(){
+    public StronaGlowna assertIsImageOneVisible(){
         WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormOne);
         assertThat(pictureBreakfastFormOne).isDisplayed();
         return this;
     }
 
-    public StronaGlowna isImageTwoVisible(){
+    public StronaGlowna assertIsImageTwoVisible(){
         WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormTwo);
         assertThat(pictureBreakfastFormTwo).isDisplayed();
         return this;
@@ -165,23 +165,23 @@ public class StronaGlowna{
     public StronaGlowna dropDownListingTest() {
 
         Select formDropDown = new Select(experienceField);
-
         WaitForElement.waitUntilElementIsVisible(experienceField);
+
         formDropDown.selectByValue("Nie mam doświadczenia");
         assertEquals(formDropDown.getFirstSelectedOption().getText(),"Nie mam doświadczenia");
-        logger.info("Choose 'Nie mam doświadczenia'", formDropDown);
+        logger.info("Choose 'Nie mam doświadczenia'");
 
         formDropDown.selectByValue("< 1 rok");
         assertEquals(formDropDown.getFirstSelectedOption().getText(),"< 1 rok");
-        logger.info("Choose '< 1 rok'", formDropDown);
+        logger.info("Choose '< 1 rok'");
 
         formDropDown.selectByValue("2 - 5 lat");
         assertEquals(formDropDown.getFirstSelectedOption().getText(),"2 - 5 lat");
-        logger.info("Choose '2 - 5 lat'", formDropDown);
+        logger.info("Choose '2 - 5 lat'");
 
         formDropDown.selectByValue("> 5 lat");
         assertEquals(formDropDown.getFirstSelectedOption().getText(),"> 5 lat");
-        logger.info("Choose '> 5 lat", formDropDown);
+        logger.info("Choose '> 5 lat");
 
         return this;
     }
@@ -216,8 +216,8 @@ public class StronaGlowna{
 
     public StronaGlowna getSameMailFormMessage(String doubleMailHasText) {
         logger.info("CHECKING IF same mail try to send twice:{} ", doubleMailHasText);
-        WaitForElement.waitUntilElementIsVisible(alreadySubscrivedError);
-        AssertWebElement.assertThat(alreadySubscrivedError).isDisplayed().hasText(doubleMailHasText);
+        WaitForElement.waitUntilElementIsVisible(alreadySubscribedError);
+        AssertWebElement.assertThat(alreadySubscribedError).isDisplayed().hasText(doubleMailHasText);
         return this;
     }
 

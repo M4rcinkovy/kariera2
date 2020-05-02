@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import page.objects.StronaGlowna;
 
 import static navigation.ApplicationURLs.APPLICATION_URL;
-import static org.testng.AssertJUnit.assertTrue;
 
 public class asUserClickAllPagesOnNavBar extends TestBase {
 
@@ -15,12 +14,12 @@ public class asUserClickAllPagesOnNavBar extends TestBase {
 
         StronaGlowna stronaGlowna = new StronaGlowna();
         stronaGlowna
-                .videoFieldIs()
-                .isCookieShow()
+                .assertIsVideoPlayerShow()
+                .assertIsCookieBarShow()
                 .clickOnCookieButtonPopUp()
-                .isFormIsActive()
-                .isImageOneVisible()
-                .isImageTwoVisible()
+                .assertIsFormIsActive()
+                .assertIsImageOneVisible()
+                .assertIsImageTwoVisible()
                 .clickOnOfertyPracy()
                 .clickOnONas()
                 .clickOnJakPracujemy()
