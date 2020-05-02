@@ -1,6 +1,7 @@
 package page.objects;
 
 import driver.manager.DriverManager;
+import generic.assertions.AssertWebElement;
 import io.qameta.allure.Step;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -78,7 +79,6 @@ public class StronaGlowna{
         WaitForElement.waitUntilElementIsVisible(videoMenuField);
         assertThat(videoMenuField).isDisplayed();
         return this;
-
     }
 
     @Step("Czy na stronie sa pokazywane cookiesy")
@@ -88,7 +88,7 @@ public class StronaGlowna{
         return this;
     }
 
-    @Step("Czy przycisk 'zaakceptuj' poprawnie si eklika i Cookies'y znikaja")
+    @Step("Czy przycisk 'zaakceptuj' poprawnie sie klika i Cookies'y znikaja")
     public StronaGlowna clickOnCookieButtonPopUp() {
         WaitForElement.waitUntilElementIsVisible(cookieButton);
         cookieButton.click();
@@ -182,11 +182,11 @@ public class StronaGlowna{
         return this;
     }
 
-    public String getInvalidFormMessage() {
+    public StronaGlowna getInvalidFormMessage(String cokolwiek) {
+        logger.info("CHECKING IF warning message {} is displayed", cokolwiek);
         WaitForElement.waitUntilElementIsVisible(invalidResponse);
-        String warning = invalidResponse.getText();
-        logger.info("Returned warning message was:{}", warning);
-        return warning;
+        AssertWebElement.assertThat(invalidResponse).isDisplayed().hasText(cokolwiek);
+        return this;
     }
 
     public String getPositiveFormMessage() {
@@ -199,7 +199,7 @@ public class StronaGlowna{
     public String getSameMailFormMessage() {
         WaitForElement.waitUntilElementIsVisible(alreadySubscrivedError);
         String warning = alreadySubscrivedError.getText();
-        logger.info("Returned warning message was:{}", warning);
+        logger.info("Returned warning message was:{} ", warning);
         return warning;
     }
 
@@ -210,25 +210,22 @@ public class StronaGlowna{
         return new OfertyPracy();
     }
 
-    public boolean isFormIsActive() {
+    public StronaGlowna isFormIsActive() {
         WaitForElement.waitUntilElementIsVisible(isFormActive);
-        boolean isDisplayed = isFormActive.isDisplayed();
-        logger.info("Czy Formularz Sniadaniowy wyswietla sie poprawnie: {}", isDisplayed);
-        return isDisplayed;
+        assertThat(isFormActive).isDisplayed();
+        return this;
     }
 
-    public boolean isImageOneVisible(){
+    public StronaGlowna isImageOneVisible(){
         WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormOne);
-        boolean isImageCiapakVisibleOne = pictureBreakfastFormOne.isDisplayed();
-        logger.info("CZY ZDJECIE Pierwsze Z Ciapakiem SIE WYSWIETLA: {}", isImageCiapakVisibleOne);
-        return isImageCiapakVisibleOne;
+        assertThat(pictureBreakfastFormOne).isDisplayed();
+        return this;
     }
 
-    public boolean isImageTwoVisible(){
+    public StronaGlowna isImageTwoVisible(){
         WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormTwo);
-        boolean isImageCiapakVisibleTwo = pictureBreakfastFormTwo.isDisplayed();
-        logger.info("CZY ZDJECIE Drugie z formularza sniadaniowego SIE WYSWIETLA: {}", isImageCiapakVisibleTwo);
-        return isImageCiapakVisibleTwo;
+        assertThat(pictureBreakfastFormTwo).isDisplayed();
+        return this;
     }
 }
 
@@ -245,3 +242,21 @@ public class StronaGlowna{
        /* JavascriptExecutor jse2 = (JavascriptExecutor) qualityExcitesLogoFooter;
         jse2.executeScript("qualityExcitesLogoFooter.click()", qualityExcitesLogoFooter);
         */
+
+        /* poprzednia asercja
+            public boolean isImageTwoVisible(){
+               WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormTwo);
+                boolean isImageCiapakVisibleTwo = pictureBreakfastFormTwo.isDisplayed();
+                logger.info("CZY ZDJECIE Drugie z formularza sniadaniowego SIE WYSWIETLA: {}", isImageCiapakVisibleTwo);
+            return isImageCiapakVisibleTwo;
+    }
+         */
+
+/*
+    /*public String getInvalidFormMessage() {
+        WaitForElement.waitUntilElementIsVisible(invalidResponse);
+        String warning = invalidResponse.getText();
+        logger.info("Returned warning message was:{}", warning);
+        return warning;
+    }
+ */

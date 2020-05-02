@@ -14,16 +14,13 @@ public class asUserClickAllPagesOnNavBar extends TestBase {
         DriverUtils.navigateToPage(APPLICATION_URL);
 
         StronaGlowna stronaGlowna = new StronaGlowna();
-        assertTrue(stronaGlowna.isFormIsActive());
-        assertTrue(stronaGlowna.isImageOneVisible());
-        assertTrue(stronaGlowna.isImageTwoVisible());
-        //assertTrue(stronaGlowna.videoFieldIs());
-        //assertTrue(stronaGlowna.isCookieShow());
-
         stronaGlowna
                 .videoFieldIs()
                 .isCookieShow()
                 .clickOnCookieButtonPopUp()
+                .isFormIsActive()
+                .isImageOneVisible()
+                .isImageTwoVisible()
                 .clickOnOfertyPracy()
                 .clickOnONas()
                 .clickOnJakPracujemy()

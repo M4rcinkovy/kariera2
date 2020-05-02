@@ -43,7 +43,7 @@ public class AssertWebElement extends AbstractAssert<AssertWebElement, WebElemen
             failWithMessage("Element text was <%s> expecting to be <%s>!", actualElementText, expectedTextValue);
         }
 
-        logger.info("WebElement had expected text!" + actualElementText);
+        logger.info("WebElement had expected text!: " + actualElementText);
         return this;
     }
 
