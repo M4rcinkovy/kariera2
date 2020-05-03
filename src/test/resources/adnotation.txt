@@ -1,0 +1,17 @@
+Przy uzyciu w xml'u
+
+                    <suiteXmlFiles>
+                        <suiteXmlFile>$(testSuite)</suiteXmlFile>
+                    </suiteXmlFiles>
+
+cmd: mvn clean test -Dsurefire.suiteXmlFiles=src\test\resources\all_tests_suite.xml
+
+Lepiej jest tak pisac, bo jedynie co musimy wywlowac zmienne to komende w cmd'ku niz myslec co sie stalo
+i czemu nie dziala, jak jest zle wprowadzony w uiteXMLFile.
+A tak to mozna skopiowac sciezke all_tests_suite
+
+
+Pamiętaj, że aby zobaczyć zmiany w raporcie musisz jeszcze raz wygenerować wyniki testów komendą:
+cmd: mvn clean test
+A następnie wygenerować sam raport komendą:
+cmd: mvn allure:report

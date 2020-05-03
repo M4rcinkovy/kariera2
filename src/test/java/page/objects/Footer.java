@@ -14,7 +14,7 @@ import waits.WaitForElement;
 
 public class Footer{
 
-    private Logger logger = LogManager.getRootLogger();
+    private Logger logger = LogManager.getLogger(Footer.class);
 
     @FindBy(id = "menu-item-599")
     private WebElement stronaBiznesowaField;

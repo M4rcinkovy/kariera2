@@ -1,6 +1,10 @@
 package tests;
 
 import driver.manager.DriverUtils;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
 import page.objects.StronaGlowna;
 
@@ -8,7 +12,11 @@ import static navigation.ApplicationURLs.APPLICATION_URL;
 
 public class FailedFillBreakfastForm extends TestBase {
 
+    @TmsLink("ID-2")
+    @Severity(SeverityLevel.NORMAL)
     @Test
+    @Description("The goal of this test is to log in using not proper fill data in fields" +
+            " and check if warning message is displayed")
     public void asUserTryToFillFormWithIncorrectPersonalData() {
         DriverUtils.navigateToPage(APPLICATION_URL);
 

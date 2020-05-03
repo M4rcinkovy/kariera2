@@ -81,7 +81,7 @@
                         <allure.results.directory>${basedir}/target/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src\test\resources\all_tests_suite.xml</suiteXmlFile>
+                        <suiteXmlFile>$(testSuite)</suiteXmlFile>
                     </suiteXmlFiles>
                     <!--Konfiguracja Allura ze ścieżką do biblioteki aspectjweaver-->
                     <argLine>
@@ -101,7 +101,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <source>1.8</source>

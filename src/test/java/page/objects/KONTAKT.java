@@ -8,11 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import waits.WaitForElement;
 
-import static org.testng.AssertJUnit.assertEquals;
-
 public class KONTAKT{
 
-    private Logger logger = LogManager.getRootLogger();
+    private Logger logger = LogManager.getLogger(KONTAKT.class);
 
     @FindBy(className = "o-Logo__Mark")
     private WebElement stronaGlownaField;

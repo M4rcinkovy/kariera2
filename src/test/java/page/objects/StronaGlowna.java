@@ -96,24 +96,28 @@ public class StronaGlowna{
         return this;
     }
 
+    @Step("Czy formularz poprawnie sie wyswietla")
     public StronaGlowna assertIsFormIsActive() {
         WaitForElement.waitUntilElementIsVisible(isFormActive);
         assertThat(isFormActive).isDisplayed();
         return this;
     }
 
+    @Step("Czy zdjecie pierwsze jest wyswietlane")
     public StronaGlowna assertIsImageOneVisible(){
         WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormOne);
         assertThat(pictureBreakfastFormOne).isDisplayed();
         return this;
     }
 
+    @Step("Czy zdjecie drugie jest wyswietlane")
     public StronaGlowna assertIsImageTwoVisible(){
         WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormTwo);
         assertThat(pictureBreakfastFormTwo).isDisplayed();
         return this;
     }
 
+    @Step("Czy pole 'imie' jest wypelnione: {nameBreakfast}")
     public StronaGlowna typeIntoNameField (String nameBreakfast) {
         WaitForElement.waitUntilElementIsVisible(nameField);
         nameField.sendKeys(nameBreakfast);
@@ -121,6 +125,7 @@ public class StronaGlowna{
         return this;
     }
 
+    @Step("Czy pole 'nazwisko' jest wypelnione: {surnameBreakfast}")
     public StronaGlowna typeIntoSurnameField (String surnameBreakfast) {
         WaitForElement.waitUntilElementIsVisible(surnameField);
         surnameField.sendKeys(surnameBreakfast);
@@ -128,6 +133,7 @@ public class StronaGlowna{
         return this;
     }
 
+    @Step("Wpisany e-mail w tescie przez użytkownika to: {emailBreakfast}")
     public StronaGlowna typeIntoEmailField (String emailBreakfast) {
         WaitForElement.waitUntilElementIsVisible(emailField);
         emailField.sendKeys(emailBreakfast);
@@ -135,6 +141,7 @@ public class StronaGlowna{
         return this;
     }
 
+    @Step("Jakie technologie zostały wypełnione: {technologyBreakfast}")
     public StronaGlowna typeIntoTechnologyField (String technologyBreakfast) {
         WaitForElement.waitUntilElementIsVisible(technologiesField);
         technologiesField.sendKeys(technologyBreakfast);
@@ -142,6 +149,7 @@ public class StronaGlowna{
         return this;
     }
 
+    @Step("Zczytanie listy czy wszystko sie zgadza")
     public StronaGlowna zczytanieListingTest() {
         Select writeFormDropDown = new Select(experienceField);
             List<WebElement> options = writeFormDropDown.getOptions();
@@ -162,6 +170,7 @@ public class StronaGlowna{
         return this;
     }
 
+    @Step("Wybor opcji z listy rozwijanej")
     public StronaGlowna dropDownListingTest() {
 
         Select formDropDown = new Select(experienceField);
@@ -186,6 +195,7 @@ public class StronaGlowna{
         return this;
     }
 
+    @Step("Czy pole z checkboxem akceptujacym zgode jest poprawnie zaznaczony")
     public StronaGlowna clickOnCheckboxLabelField() {
         WaitForElement.waitUntilElementIsVisible(checkboxLabel);
         checkboxLabel.click();
@@ -193,6 +203,7 @@ public class StronaGlowna{
         return this;
     }
 
+    @Step("Czy przycisk wyslij dziala poprawnie")
     public StronaGlowna clickOnSignUpButton() {
         WaitForElement.waitUntilElementIsVisible(submitButton);
         submitButton.click();
@@ -200,6 +211,7 @@ public class StronaGlowna{
         return this;
     }
 
+    @Step("Czy error z wiadomoscia sie wyswietla {errorHasText}")
     public StronaGlowna getInvalidFormMessage(String errorHasText) {
         logger.info("CHECKING IF warning message {} is displayed", errorHasText);
         WaitForElement.waitUntilElementIsVisible(invalidResponse);
@@ -207,6 +219,7 @@ public class StronaGlowna{
         return this;
     }
 
+    @Step("Czy wyslanie prawidlowo maila wyswietla prawidlowa wiadomosc: {correctHasText}")
     public StronaGlowna getPositiveFormMessage(String correctHasText) {
         logger.info("CHECKING if correct message {} is displayed", correctHasText);
         WaitForElement.waitUntilElementIsVisible(successResponse);
@@ -214,6 +227,7 @@ public class StronaGlowna{
         return this;
     }
 
+    @Step("Jaki leci komunikat gdy chce sie zapisac 2-razy ten sam mail {doubleMailHasText}")
     public StronaGlowna getSameMailFormMessage(String doubleMailHasText) {
         logger.info("CHECKING IF same mail try to send twice:{} ", doubleMailHasText);
         WaitForElement.waitUntilElementIsVisible(alreadySubscribedError);
@@ -221,6 +235,7 @@ public class StronaGlowna{
         return this;
     }
 
+    @Step("Po wyslaniu/niewyslaniu wiadomosci, przechodzimy na podstrone z ofertami pracy")
     public OfertyPracy clickOnOfertyPracy() {
         WaitForElement.waitUntilElementIsClickable(ofertyPracyMenuField);
         ofertyPracyMenuField.click();

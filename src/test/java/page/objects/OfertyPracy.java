@@ -12,7 +12,7 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class OfertyPracy{
 
-    private Logger logger = LogManager.getRootLogger();
+    private Logger logger = LogManager.getLogger(OfertyPracy.class);
 
     @FindBy(id = "menu-item-11993")
     private WebElement oNasField;
