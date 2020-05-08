@@ -10,9 +10,7 @@ import waits.WaitForElement;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class BlogTechniczny{
-
-    private Logger logger = LogManager.getLogger(BlogTechniczny.class);
+public class BlogTechniczny extends BasePage{
 
     @FindBy(id = "menu-item-11995")
     private WebElement faqField;
@@ -24,10 +22,10 @@ public class BlogTechniczny{
     public FAQ clickOnFAQ() {
         WaitForElement.waitUntilElementIsClickable(faqField);
             String isTextIsProperInNavBar = faqField.getText();
-            logger.info("Zwrócono text z navbara: {}", isTextIsProperInNavBar);
+            log().info("Zwrócono text z navbara: {}", isTextIsProperInNavBar);
             assertEquals(isTextIsProperInNavBar, "FAQ");
         faqField.click();
-        logger.info("Clicked on 'FAQ' Navigation Menu");
+        log().info("Clicked on 'FAQ' Navigation Menu");
         return new FAQ();
     }
 

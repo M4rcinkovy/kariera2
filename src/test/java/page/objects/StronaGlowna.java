@@ -17,9 +17,7 @@ import java.util.List;
 import static generic.assertions.AssertWebElement.assertThat;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class StronaGlowna{
-
-    private Logger logger = LogManager.getLogger(StronaGlowna.class);
+public class StronaGlowna extends BasePage{
 
     @FindBy(className = "o-Button--Small")
     private WebElement cookieButton;
@@ -92,7 +90,7 @@ public class StronaGlowna{
     public StronaGlowna clickOnCookieButtonPopUp() {
         WaitForElement.waitUntilElementIsVisible(cookieButton);
         cookieButton.click();
-        logger.info("Clicked on Cookie button, named: 'Akceptuje'");
+        log().info("Clicked on Cookie button, named: 'Akceptuje'");
         return this;
     }
 
@@ -121,7 +119,7 @@ public class StronaGlowna{
     public StronaGlowna typeIntoNameField (String nameBreakfast) {
         WaitForElement.waitUntilElementIsVisible(nameField);
         nameField.sendKeys(nameBreakfast);
-        logger.info("Typed into 'Name' Field {}", nameBreakfast);
+        log().info("Typed into 'Name' Field {}", nameBreakfast);
         return this;
     }
 
@@ -129,7 +127,7 @@ public class StronaGlowna{
     public StronaGlowna typeIntoSurnameField (String surnameBreakfast) {
         WaitForElement.waitUntilElementIsVisible(surnameField);
         surnameField.sendKeys(surnameBreakfast);
-        logger.info("Typed into 'Surname' Field {}", surnameBreakfast);
+        log().info("Typed into 'Surname' Field {}", surnameBreakfast);
         return this;
     }
 
@@ -137,7 +135,7 @@ public class StronaGlowna{
     public StronaGlowna typeIntoEmailField (String emailBreakfast) {
         WaitForElement.waitUntilElementIsVisible(emailField);
         emailField.sendKeys(emailBreakfast);
-        logger.info("Typed into 'e-mail' Field {}", emailBreakfast);
+        log().info("Typed into 'e-mail' Field {}", emailBreakfast);
         return this;
     }
 
@@ -145,7 +143,7 @@ public class StronaGlowna{
     public StronaGlowna typeIntoTechnologyField (String technologyBreakfast) {
         WaitForElement.waitUntilElementIsVisible(technologiesField);
         technologiesField.sendKeys(technologyBreakfast);
-        logger.info("Typed into 'Technologies' Field {}", technologyBreakfast);
+        log().info("Typed into 'Technologies' Field {}", technologyBreakfast);
         return this;
     }
 
@@ -178,19 +176,19 @@ public class StronaGlowna{
 
         formDropDown.selectByValue("Nie mam doświadczenia");
         assertEquals(formDropDown.getFirstSelectedOption().getText(),"Nie mam doświadczenia");
-        logger.info("Choose 'Nie mam doświadczenia'");
+        log().info("Choose 'Nie mam doświadczenia'");
 
         formDropDown.selectByValue("< 1 rok");
         assertEquals(formDropDown.getFirstSelectedOption().getText(),"< 1 rok");
-        logger.info("Choose '< 1 rok'");
+        log().info("Choose '< 1 rok'");
 
         formDropDown.selectByValue("2 - 5 lat");
         assertEquals(formDropDown.getFirstSelectedOption().getText(),"2 - 5 lat");
-        logger.info("Choose '2 - 5 lat'");
+        log().info("Choose '2 - 5 lat'");
 
         formDropDown.selectByValue("> 5 lat");
         assertEquals(formDropDown.getFirstSelectedOption().getText(),"> 5 lat");
-        logger.info("Choose '> 5 lat");
+        log().info("Choose '> 5 lat");
 
         return this;
     }
@@ -199,7 +197,7 @@ public class StronaGlowna{
     public StronaGlowna clickOnCheckboxLabelField() {
         WaitForElement.waitUntilElementIsVisible(checkboxLabel);
         checkboxLabel.click();
-        logger.info("Clicked on 'checkbox' Label");
+        log().info("Clicked on 'checkbox' Label");
         return this;
     }
 
@@ -207,13 +205,13 @@ public class StronaGlowna{
     public StronaGlowna clickOnSignUpButton() {
         WaitForElement.waitUntilElementIsVisible(submitButton);
         submitButton.click();
-        logger.info("Clicked on Submit Button");
+        log().info("Clicked on Submit Button");
         return this;
     }
 
     @Step("Czy error z wiadomoscia sie wyswietla {errorHasText}")
     public StronaGlowna getInvalidFormMessage(String errorHasText) {
-        logger.info("CHECKING IF warning message {} is displayed", errorHasText);
+        log().info("CHECKING IF warning message {} is displayed", errorHasText);
         WaitForElement.waitUntilElementIsVisible(invalidResponse);
         AssertWebElement.assertThat(invalidResponse).isDisplayed().hasText(errorHasText);
         return this;
@@ -221,7 +219,7 @@ public class StronaGlowna{
 
     @Step("Czy wyslanie prawidlowo maila wyswietla prawidlowa wiadomosc: {correctHasText}")
     public StronaGlowna getPositiveFormMessage(String correctHasText) {
-        logger.info("CHECKING if correct message {} is displayed", correctHasText);
+        log().info("CHECKING if correct message {} is displayed", correctHasText);
         WaitForElement.waitUntilElementIsVisible(successResponse);
         AssertWebElement.assertThat(successResponse).isDisplayed().hasText(correctHasText);
         return this;
@@ -229,7 +227,7 @@ public class StronaGlowna{
 
     @Step("Jaki leci komunikat gdy chce sie zapisac 2-razy ten sam mail {doubleMailHasText}")
     public StronaGlowna getSameMailFormMessage(String doubleMailHasText) {
-        logger.info("CHECKING IF same mail try to send twice:{} ", doubleMailHasText);
+        log().info("CHECKING IF same mail try to send twice:{} ", doubleMailHasText);
         WaitForElement.waitUntilElementIsVisible(alreadySubscribedError);
         AssertWebElement.assertThat(alreadySubscribedError).isDisplayed().hasText(doubleMailHasText);
         return this;
@@ -239,7 +237,7 @@ public class StronaGlowna{
     public OfertyPracy clickOnOfertyPracy() {
         WaitForElement.waitUntilElementIsClickable(ofertyPracyMenuField);
         ofertyPracyMenuField.click();
-        logger.info("Clicked on 'Oferty Pracy' Navigation Menu");
+        log().info("Clicked on 'Oferty Pracy' Navigation Menu");
         return new OfertyPracy();
     }
 }

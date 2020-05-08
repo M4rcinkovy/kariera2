@@ -2,6 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Kariera Tests">
 
+    <listeners>
+        <listener class-name="utils.testng.listeners.TestListener"/>
+        <!--<listener class-name="utils.testng.listeners.AnnotationTransformer"/>-->
+    </listeners>
+
     <test name="Check if all pages open proper">
         <parameter name="browser" value="CHROME"/>
         <classes>

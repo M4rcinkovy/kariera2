@@ -10,9 +10,7 @@ import waits.WaitForElement;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class ONas{
-
-    private Logger logger = LogManager.getLogger(ONas.class);
+public class ONas extends BasePage{
 
     @FindBy(id = "menu-item-11994")
     private WebElement jakPracujemyField;
@@ -24,10 +22,10 @@ public class ONas{
     public JakPracujemy clickOnJakPracujemy() {
         WaitForElement.waitUntilElementIsClickable(jakPracujemyField);
             String isTextIsProperInNavBar = jakPracujemyField.getText();
-            logger.info("Zwrócono text z navbara: {}", isTextIsProperInNavBar);
+            log().info("Zwrócono text z navbara: {}", isTextIsProperInNavBar);
             assertEquals(isTextIsProperInNavBar, "JAK PRACUJEMY");
         jakPracujemyField.click();
-        logger.info("Clicked on 'Jak Pracujemy' Navigation Menu");
+        log().info("Clicked on 'Jak Pracujemy' Navigation Menu");
         return new JakPracujemy();
     }
 

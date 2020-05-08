@@ -8,9 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import waits.WaitForElement;
 
-public class TopMenuPage {
-
-    private Logger logger = LogManager.getLogger(TopMenuPage.class);
+public class TopMenuPage extends BasePage{
 
     @FindBy(id = "menu-item-604")
     private WebElement ofertyPracyMenuField;
@@ -37,7 +35,7 @@ public class TopMenuPage {
     public OfertyPracy clickOnNavBoxes() {
         WaitForElement.waitUntilElementIsClickable(ofertyPracyMenuField);
         ofertyPracyMenuField.click();
-        logger.info("Clicked on Login Button");
+        log().info("Clicked on Login Button");
         return new OfertyPracy();
     }
 

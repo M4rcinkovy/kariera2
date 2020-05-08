@@ -12,9 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import waits.WaitForElement;
 
-public class Footer{
-
-    private Logger logger = LogManager.getLogger(Footer.class);
+public class Footer extends BasePage{
 
     @FindBy(id = "menu-item-599")
     private WebElement stronaBiznesowaField;
@@ -71,28 +69,28 @@ public class Footer{
     public boolean stronaBiznesowa() {
         WaitForElement.waitUntilElementIsVisible(stronaBiznesowaField);
         boolean isStronaBizButtonShow = stronaBiznesowaField.isDisplayed();
-        logger.info("Czy pokazuje sie w stopce 'Strona Biznesowa': {}", isStronaBizButtonShow);
+        log().info("Czy pokazuje sie w stopce 'Strona Biznesowa': {}", isStronaBizButtonShow);
         return isStronaBizButtonShow;
     }
 
     public boolean blogBiznesowy() {
         WaitForElement.waitUntilElementIsVisible(blogBiznesowy);
         boolean isBlogBiznesowy = blogBiznesowy.isDisplayed();
-        logger.info("Czy pokazuje sie w stopce 'Blog Biznesowy': {}", isBlogBiznesowy);
+        log().info("Czy pokazuje sie w stopce 'Blog Biznesowy': {}", isBlogBiznesowy);
         return isBlogBiznesowy;
     }
 
     public boolean emailFooterSystemPopUp() {
         WaitForElement.waitUntilElementIsVisible(emailFooterField);
         boolean isEmailProper = emailFooterField.isDisplayed();
-        logger.info("Czy EMAIL (adres) jest widoczny, i czy mozna w niego kliknac: {}", isEmailProper);
+        log().info("Czy EMAIL (adres) jest widoczny, i czy mozna w niego kliknac: {}", isEmailProper);
         return isEmailProper;
     }
 
     public boolean kopiujDoSchowka() {
         WaitForElement.waitUntilElementIsVisible(emailFooterCopyData);
         boolean isKopiujDoSchowkaProper = emailFooterCopyData.isDisplayed();
-        logger.info("Czy adres email 'kopiuj do schowka' wyswietla sie na stronie: {}", isKopiujDoSchowkaProper);
+        log().info("Czy adres email 'kopiuj do schowka' wyswietla sie na stronie: {}", isKopiujDoSchowkaProper);
         return isKopiujDoSchowkaProper;
     }
 
@@ -106,21 +104,21 @@ public class Footer{
     public boolean phoneZobaczButton() {
         WaitForElement.waitUntilElementIsVisible(phoneViewCloseField);
         boolean isButtonShow = phoneViewCloseField.isDisplayed();
-        logger.info("Czy ukryty Phone number sie pokazuje: {}", isButtonShow);
+        log().info("Czy ukryty Phone number sie pokazuje: {}", isButtonShow);
         return isButtonShow;
     }
 
     public Footer clickOnZobaczPhoneButton() {
         WaitForElement.waitUntilElementIsVisible(qualityExcitesLogoFooter);
         qualityExcitesLogoFooter.click();
-        logger.info("Czy klikniecie ukrytego 'Phone Number' dziala i odslania numer: {}", qualityExcitesLogoFooter);
+        log().info("Czy klikniecie ukrytego 'Phone Number' dziala i odslania numer: {}", qualityExcitesLogoFooter);
         return this;
     }
 
     public boolean phoneAllNumberExpand() {
         WaitForElement.waitUntilElementIsVisible(phoneViewOpenField);
         boolean isPhoneNumberExpand = phoneViewOpenField.isDisplayed();
-        logger.info("Czy caly numer telefonu jest widoczny: {}", isPhoneNumberExpand);
+        log().info("Czy caly numer telefonu jest widoczny: {}", isPhoneNumberExpand);
         return isPhoneNumberExpand;
     }
 

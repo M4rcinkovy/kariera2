@@ -8,9 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import waits.WaitForElement;
 
-public class KONTAKT{
-
-    private Logger logger = LogManager.getLogger(KONTAKT.class);
+public class KONTAKT extends BasePage{
 
     @FindBy(className = "o-Logo__Mark")
     private WebElement stronaGlownaField;
@@ -22,9 +20,9 @@ public class KONTAKT{
     public StronaGlowna clickOnStronaGlowna() {
         WaitForElement.waitUntilElementIsClickable(stronaGlownaField);
             boolean isLogoisActive = stronaGlownaField.isDisplayed();
-            logger.info("CZY klikniecie w logo na strone glowna przenosi użytkownika na HomePage: {}", isLogoisActive);
+            log().info("CZY klikniecie w logo na strone glowna przenosi użytkownika na HomePage: {}", isLogoisActive);
         stronaGlownaField.click();
-        logger.info("Clicked on Logo = Strona glowna");
+        log().info("Clicked on Logo = Strona glowna");
         return new StronaGlowna();
     }
 }

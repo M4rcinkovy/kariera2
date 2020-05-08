@@ -8,8 +8,7 @@ import page.objects.StronaGlowna;
 import static navigation.ApplicationURLs.APPLICATION_URL;
 
 public class asUserClickAllPagesOnNavBar extends TestBase {
-
-    @Issue("DEFECT-1")
+    
     @TmsLink("ID-1")
     @Severity(SeverityLevel.BLOCKER)
     @Test
