@@ -3,6 +3,7 @@ package tests;
 import driver.manager.DriverUtils;
 import org.testng.annotations.Test;
 import page.objects.Footer;
+import page.objects.StronaGlowna;
 
 import static navigation.ApplicationURLs.APPLICATION_URL;
 import static org.testng.AssertJUnit.assertTrue;
@@ -21,8 +22,19 @@ public class FooterUse extends TestBase {
         assertTrue(footer.phoneZobaczButton());
         assertTrue(footer.phoneAllNumberExpand());
 
-        footer
-              //.clickOnKopiujDoSchowkaButton()
-              .clickOnZobaczPhoneButton();
+        StronaGlowna stronaGlowna = new StronaGlowna();
+        stronaGlowna
+                .assertIsCookieBarShow()
+                .clickOnCookieButtonPopUp();
+
+        footer.clickOnQualityExcitesButton();
+        DriverUtils.backToPage();
+
+        footer.clickOnQualityExcitesMeetUpButton();
+        DriverUtils.backToPage();
+
+        footer.clickOnDPTOButton();
+        DriverUtils.backToPage();
+        
     }
 }

@@ -3,21 +3,24 @@ package page.objects;
 import driver.manager.DriverManager;
 import generic.assertions.AssertWebElement;
 import io.qameta.allure.Step;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import waits.WaitForElement;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static generic.assertions.AssertWebElement.assertThat;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class StronaGlowna extends BasePage{
+public class StronaGlowna extends BasePage {
 
     @FindBy(className = "o-Button--Small")
     private WebElement cookieButton;
@@ -79,6 +82,15 @@ public class StronaGlowna extends BasePage{
         return this;
     }
 
+    File scrFile = ((TakesScreenshot) videoMenuField).getScreenshotAs(OutputType.FILE);
+    {
+        try {
+            FileUtils.copyFile(scrFile, new File("Screenshots/selenium_screenshot.png"));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+    }
+
     @Step("Czy na stronie sa pokazywane cookiesy")
     public StronaGlowna assertIsCookieBarShow() {
         WaitForElement.waitUntilElementIsVisible(cookieButton);
@@ -102,21 +114,21 @@ public class StronaGlowna extends BasePage{
     }
 
     @Step("Czy zdjecie pierwsze jest wyswietlane")
-    public StronaGlowna assertIsImageOneVisible(){
+    public StronaGlowna assertIsImageOneVisible() {
         WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormOne);
         assertThat(pictureBreakfastFormOne).isDisplayed();
         return this;
     }
 
     @Step("Czy zdjecie drugie jest wyswietlane")
-    public StronaGlowna assertIsImageTwoVisible(){
+    public StronaGlowna assertIsImageTwoVisible() {
         WaitForElement.waitUntilElementIsVisible(pictureBreakfastFormTwo);
         assertThat(pictureBreakfastFormTwo).isDisplayed();
         return this;
     }
 
     @Step("Czy pole 'imie' jest wypelnione: {nameBreakfast}")
-    public StronaGlowna typeIntoNameField (String nameBreakfast) {
+    public StronaGlowna typeIntoNameField(String nameBreakfast) {
         WaitForElement.waitUntilElementIsVisible(nameField);
         nameField.sendKeys(nameBreakfast);
         log().info("Typed into 'Name' Field {}", nameBreakfast);
@@ -124,7 +136,7 @@ public class StronaGlowna extends BasePage{
     }
 
     @Step("Czy pole 'nazwisko' jest wypelnione: {surnameBreakfast}")
-    public StronaGlowna typeIntoSurnameField (String surnameBreakfast) {
+    public StronaGlowna typeIntoSurnameField(String surnameBreakfast) {
         WaitForElement.waitUntilElementIsVisible(surnameField);
         surnameField.sendKeys(surnameBreakfast);
         log().info("Typed into 'Surname' Field {}", surnameBreakfast);
@@ -132,7 +144,7 @@ public class StronaGlowna extends BasePage{
     }
 
     @Step("Wpisany e-mail w tescie przez użytkownika to: {emailBreakfast}")
-    public StronaGlowna typeIntoEmailField (String emailBreakfast) {
+    public StronaGlowna typeIntoEmailField(String emailBreakfast) {
         WaitForElement.waitUntilElementIsVisible(emailField);
         emailField.sendKeys(emailBreakfast);
         log().info("Typed into 'e-mail' Field {}", emailBreakfast);
@@ -140,7 +152,7 @@ public class StronaGlowna extends BasePage{
     }
 
     @Step("Jakie technologie zostały wypełnione: {technologyBreakfast}")
-    public StronaGlowna typeIntoTechnologyField (String technologyBreakfast) {
+    public StronaGlowna typeIntoTechnologyField(String technologyBreakfast) {
         WaitForElement.waitUntilElementIsVisible(technologiesField);
         technologiesField.sendKeys(technologyBreakfast);
         log().info("Typed into 'Technologies' Field {}", technologyBreakfast);
@@ -150,18 +162,18 @@ public class StronaGlowna extends BasePage{
     @Step("Zczytanie listy czy wszystko sie zgadza")
     public StronaGlowna zczytanieListingTest() {
         Select writeFormDropDown = new Select(experienceField);
-            List<WebElement> options = writeFormDropDown.getOptions();
-            List<String> namesOfOptions = new ArrayList<String>();
-            for (WebElement option : options) {
-                namesOfOptions.add(option.getText());
-                System.out.println(option.getText());
-            }
-            List<String> expectedNamesOfOptions = new ArrayList<String>();
-                expectedNamesOfOptions.add("Wybierz jakie masz doświadczenie");
-                expectedNamesOfOptions.add("Nie mam doświadczenia");
-                expectedNamesOfOptions.add("< 1 rok");
-                expectedNamesOfOptions.add("2 - 5 lat");
-                expectedNamesOfOptions.add("> 5 lat");
+        List<WebElement> options = writeFormDropDown.getOptions();
+        List<String> namesOfOptions = new ArrayList<String>();
+        for (WebElement option : options) {
+            namesOfOptions.add(option.getText());
+            System.out.println(option.getText());
+        }
+        List<String> expectedNamesOfOptions = new ArrayList<String>();
+        expectedNamesOfOptions.add("Wybierz jakie masz doświadczenie");
+        expectedNamesOfOptions.add("Nie mam doświadczenia");
+        expectedNamesOfOptions.add("< 1 rok");
+        expectedNamesOfOptions.add("2 - 5 lat");
+        expectedNamesOfOptions.add("> 5 lat");
 
         assertEquals(namesOfOptions, expectedNamesOfOptions);
 
@@ -175,19 +187,19 @@ public class StronaGlowna extends BasePage{
         WaitForElement.waitUntilElementIsVisible(experienceField);
 
         formDropDown.selectByValue("Nie mam doświadczenia");
-        assertEquals(formDropDown.getFirstSelectedOption().getText(),"Nie mam doświadczenia");
+        assertEquals(formDropDown.getFirstSelectedOption().getText(), "Nie mam doświadczenia");
         log().info("Choose 'Nie mam doświadczenia'");
 
         formDropDown.selectByValue("< 1 rok");
-        assertEquals(formDropDown.getFirstSelectedOption().getText(),"< 1 rok");
+        assertEquals(formDropDown.getFirstSelectedOption().getText(), "< 1 rok");
         log().info("Choose '< 1 rok'");
 
         formDropDown.selectByValue("2 - 5 lat");
-        assertEquals(formDropDown.getFirstSelectedOption().getText(),"2 - 5 lat");
+        assertEquals(formDropDown.getFirstSelectedOption().getText(), "2 - 5 lat");
         log().info("Choose '2 - 5 lat'");
 
         formDropDown.selectByValue("> 5 lat");
-        assertEquals(formDropDown.getFirstSelectedOption().getText(),"> 5 lat");
+        assertEquals(formDropDown.getFirstSelectedOption().getText(), "> 5 lat");
         log().info("Choose '> 5 lat");
 
         return this;

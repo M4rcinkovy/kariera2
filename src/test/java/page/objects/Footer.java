@@ -1,8 +1,7 @@
 package page.objects;
 
 import driver.manager.DriverManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +10,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import waits.WaitForElement;
+
+import static generic.assertions.AssertWebElement.assertThat;
 
 public class Footer extends BasePage{
 
@@ -35,7 +36,7 @@ public class Footer extends BasePage{
     @FindBy(xpath = "//a[contains(@data-elementname, 'Phone - view')]")
     private WebElement proba;
 
-    @FindBy(xpath = "//a[contains(@data-elementname, 'Quality_Excites')]")
+    @FindBy(xpath = "//a[contains(@data-elementname, 'Quality Excites')]")
     private WebElement qualityExcitesLogoFooter;
 
     @FindBy(xpath = "//img[contains(@alt, 'Quality Meetup')]")
@@ -109,8 +110,8 @@ public class Footer extends BasePage{
     }
 
     public Footer clickOnZobaczPhoneButton() {
-        WaitForElement.waitUntilElementIsVisible(qualityExcitesLogoFooter);
-        qualityExcitesLogoFooter.click();
+        WaitForElement.waitUntilElementIsVisible(phoneViewOpenField);
+        phoneViewOpenField.click();
         log().info("Czy klikniecie ukrytego 'Phone Number' dziala i odslania numer: {}", qualityExcitesLogoFooter);
         return this;
     }
@@ -120,6 +121,27 @@ public class Footer extends BasePage{
         boolean isPhoneNumberExpand = phoneViewOpenField.isDisplayed();
         log().info("Czy caly numer telefonu jest widoczny: {}", isPhoneNumberExpand);
         return isPhoneNumberExpand;
+    }
+
+    public Footer clickOnQualityExcitesButton() {
+        WaitForElement.waitUntilElementIsVisible(qualityExcitesLogoFooter);
+        qualityExcitesLogoFooter.click();
+        log().info("Czy mozna kliknac w Quality Excites logo: {}", qualityExcitesLogoFooter);
+        return this;
+    }
+
+    public Footer clickOnQualityExcitesMeetUpButton() {
+        WaitForElement.waitUntilElementIsVisible(qualityExcitesMeetUpLogoFooter);
+        qualityExcitesMeetUpLogoFooter.click();
+        log().info("Czy mozna kliknac w Quality MeetUp logo: {}", qualityExcitesMeetUpLogoFooter);
+        return this;
+    }
+
+    public Footer clickOnDPTOButton() {
+        WaitForElement.waitUntilElementIsVisible(dptoLogoFooter);
+        dptoLogoFooter.click();
+        log().info("Czy mozna kliknac w DPTO logo: {}", dptoLogoFooter);
+        return this;
     }
 
 }
