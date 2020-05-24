@@ -6,7 +6,6 @@ import page.objects.Footer;
 import page.objects.StronaGlowna;
 
 import static navigation.ApplicationURLs.APPLICATION_URL;
-import static org.testng.AssertJUnit.assertTrue;
 
 public class FooterUse extends TestBase {
 
@@ -14,28 +13,27 @@ public class FooterUse extends TestBase {
     public void asUserCheckIfFooterWorkCorrectly() {
         DriverUtils.navigateToPage(APPLICATION_URL);
 
-        Footer footer = new Footer();
-        assertTrue(footer.stronaBiznesowa());
-        assertTrue(footer.blogBiznesowy());
-        //assertTrue(footer.emailFooterSystemPopUp());
-        assertTrue(footer.kopiujDoSchowka());
-        assertTrue(footer.phoneZobaczButton());
-        assertTrue(footer.phoneAllNumberExpand());
-        assertTrue(footer.pictureBeforeMap());
-
         StronaGlowna stronaGlowna = new StronaGlowna();
         stronaGlowna
                 .assertIsCookieBarShow()
                 .clickOnCookieButtonPopUp();
 
-        footer.clickOnZobaczPhoneButton()
+        Footer footer = new Footer();
+        footer
+              .assertIsKopiujDoSchowka()
+              .assertIsPhoneZobaczButton()
+              .assertIsPhoneAllNumberExpand()
+              .assertIsPictureBeforeMap()
+              .assertIsStronaBiznesowaFooterLink()
+              .assertIsBlogBiznesowyFooterLink()
+              .clickOnZobaczPhoneButton()
               .takeHideNumberText()
               .takeShowNumberText()
               .emailFromFooter()
               .kopiujDoSchowkaButton()
               .kopiujDoSchowkaButtonClick()
               .skopiowanoButton()
-              .takeWords()
+              .addressLocationFP()
               .clickOnQualityExcitesButton();
 
         DriverUtils.backToPage();
