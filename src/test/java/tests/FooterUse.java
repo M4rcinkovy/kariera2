@@ -12,22 +12,32 @@ public class FooterUse extends TestBase {
 
     @Test
     public void asUserCheckIfFooterWorkCorrectly() {
-        //DriverUtils.navigateToPage(APPLICATION_URL);
+        DriverUtils.navigateToPage(APPLICATION_URL);
 
         Footer footer = new Footer();
         assertTrue(footer.stronaBiznesowa());
         assertTrue(footer.blogBiznesowy());
-        assertTrue(footer.emailFooterSystemPopUp());
+        //assertTrue(footer.emailFooterSystemPopUp());
         assertTrue(footer.kopiujDoSchowka());
         assertTrue(footer.phoneZobaczButton());
         assertTrue(footer.phoneAllNumberExpand());
+        assertTrue(footer.pictureBeforeMap());
 
         StronaGlowna stronaGlowna = new StronaGlowna();
         stronaGlowna
                 .assertIsCookieBarShow()
                 .clickOnCookieButtonPopUp();
 
-        footer.clickOnQualityExcitesButton();
+        footer.clickOnZobaczPhoneButton()
+              .takeHideNumberText()
+              .takeShowNumberText()
+              .emailFromFooter()
+              .kopiujDoSchowkaButton()
+              .kopiujDoSchowkaButtonClick()
+              .skopiowanoButton()
+              .takeWords()
+              .clickOnQualityExcitesButton();
+
         DriverUtils.backToPage();
 
         footer.clickOnQualityExcitesMeetUpButton();
@@ -35,6 +45,11 @@ public class FooterUse extends TestBase {
 
         footer.clickOnDPTOButton();
         DriverUtils.backToPage();
-        
+
+        footer
+                .clickOnZobaczNaMapieButton()
+                .clickOnCrossOnMapButton()
+                .clickOnZobaczNaMapieButton()
+                .showOnGoogleMap();
     }
 }

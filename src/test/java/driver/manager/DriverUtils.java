@@ -14,18 +14,23 @@ public class DriverUtils {
         DriverManager.getWebDriver().navigate().to(pageUrl);
     }
 
-    @Step("Back page to URL: {pageUrl}")
+    //@Step("Back page to URL: {pageUrl}")
     public static void backToPage() {
         DriverManager.getWebDriver().navigate().back();
     }
 
-    @Step("Navigating to URL: {pageUrl}")
+    /*@Step("Navigating to URL: {pageUrl}")
     public static void forwardToPage() {
         DriverManager.getWebDriver().navigate().forward();
+    }
+
+    @Step("Close tab")
+    public static void closeTab() {
+        DriverManager.getWebDriver().close();
     }
 
     @Step("Navigating to URL: {pageUrl}")
     public static void cokolwiek() {
       //  DriverManager.executeScript("window.history.go(-1)");
-    }
+    }*/
 }

@@ -1,40 +1,33 @@
 package page.objects;
 
 import driver.manager.DriverManager;
-import io.qameta.allure.Step;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import waits.WaitForElement;
 
-import static generic.assertions.AssertWebElement.assertThat;
-
 public class Footer extends BasePage{
 
     @FindBy(id = "menu-item-599")
-    private WebElement stronaBiznesowaField;
+    private WebElement stronaBiznesowaFooterButton;
 
     @FindBy(id = "menu-item-12400")
-    private WebElement blogBiznesowy;
+    private WebElement blogBiznesowyFooterButton;
 
-    @FindBy(className = "o-ContactData__Link")
-    private WebElement emailFooterField;
+    @FindBy(xpath = "//a[contains(@data-elementname, 'Email - click')]")
+    private WebElement mailtoEmailButton;
 
-    @FindBy(className = "o-ContactData__Email__Copy")
-    private WebElement emailFooterCopyData; // tu musze kliknac i pobrac napisy przed i po kliknieciu
+    @FindBy(xpath = "//a[contains(@data-elementname, 'Email – copy to clipboard')]")
+    private WebElement emailCopyToClipboard;
 
-    @FindBy(className = "o-ContactData__Phone__Content")
-    private WebElement phoneViewOpenField;
-
-    @FindBy(id = "o-ContactData__Phone__View")
-    private WebElement phoneViewCloseField; //pobrac numer telefonu i czy jest wlasciwy w asercji
+    @FindBy(xpath = "//span[contains(@class, 'Text--Copied')]")
+    private WebElement emailClipboardTextCopied;
 
     @FindBy(xpath = "//a[contains(@data-elementname, 'Phone - view')]")
-    private WebElement proba;
+    private WebElement phoneNumberHideButton;
+
+    @FindBy(xpath = "//a[contains(@data-elementname, 'Phone - call')]")
+    private WebElement phoneCallButton;
 
     @FindBy(xpath = "//a[contains(@data-elementname, 'Quality Excites')]")
     private WebElement qualityExcitesLogoFooter;
@@ -48,14 +41,11 @@ public class Footer extends BasePage{
     @FindBy(className = "s-Footer__Address__Text")
     private WebElement addressFooterField;
 
-    @FindBy(className = "s-Footer__Address__Image")
-    private WebElement addressFooterFPPicture;
-
     @FindBy(className = "s-Footer__Address__ShowMap")
     private WebElement addressFooterShowMap;
 
-    @FindBy(id = "js-Map")
-    private WebElement odslonietaMapaGoogle;
+    @FindBy(className = "s-Footer__Address__Image")
+    private WebElement addressFooterFPPicture;
 
     @FindBy(className = "o-Map__Close")
     private WebElement crossButtonOnGoogleMap;
@@ -68,59 +58,122 @@ public class Footer extends BasePage{
     }
 
     public boolean stronaBiznesowa() {
-        WaitForElement.waitUntilElementIsVisible(stronaBiznesowaField);
-        boolean isStronaBizButtonShow = stronaBiznesowaField.isDisplayed();
+        WaitForElement.waitUntilElementIsVisible(stronaBiznesowaFooterButton);
+        boolean isStronaBizButtonShow = stronaBiznesowaFooterButton.isDisplayed();
         log().info("Czy pokazuje sie w stopce 'Strona Biznesowa': {}", isStronaBizButtonShow);
         return isStronaBizButtonShow;
     }
 
     public boolean blogBiznesowy() {
-        WaitForElement.waitUntilElementIsVisible(blogBiznesowy);
-        boolean isBlogBiznesowy = blogBiznesowy.isDisplayed();
+        WaitForElement.waitUntilElementIsVisible(blogBiznesowyFooterButton);
+        boolean isBlogBiznesowy = blogBiznesowyFooterButton.isDisplayed();
         log().info("Czy pokazuje sie w stopce 'Blog Biznesowy': {}", isBlogBiznesowy);
         return isBlogBiznesowy;
     }
 
-    public boolean emailFooterSystemPopUp() {
+    /*public boolean emailFooterSystemPopUp() {
         WaitForElement.waitUntilElementIsVisible(emailFooterField);
         boolean isEmailProper = emailFooterField.isDisplayed();
         log().info("Czy EMAIL (adres) jest widoczny, i czy mozna w niego kliknac: {}", isEmailProper);
         return isEmailProper;
-    }
+    }*/
 
     public boolean kopiujDoSchowka() {
-        WaitForElement.waitUntilElementIsVisible(emailFooterCopyData);
-        boolean isKopiujDoSchowkaProper = emailFooterCopyData.isDisplayed();
+        WaitForElement.waitUntilElementIsVisible(emailCopyToClipboard);
+        boolean isKopiujDoSchowkaProper = emailCopyToClipboard.isDisplayed();
         log().info("Czy adres email 'kopiuj do schowka' wyswietla sie na stronie: {}", isKopiujDoSchowkaProper);
         return isKopiujDoSchowkaProper;
     }
 
-    /*public Footer clickOnKopiujDoSchowkaButton() {
-        WaitForElement.waitUntilElementIsVisible(emailFooterCopyData);
-        emailFooterCopyData.click();
-        logger.info("Skopiowano wartosc 'Skopiuj do schowka': {}");
-        return this;
-    }*/
-
     public boolean phoneZobaczButton() {
-        WaitForElement.waitUntilElementIsVisible(phoneViewCloseField);
-        boolean isButtonShow = phoneViewCloseField.isDisplayed();
-        log().info("Czy ukryty Phone number sie pokazuje: {}", isButtonShow);
+        WaitForElement.waitUntilElementIsVisible(phoneNumberHideButton);
+        boolean isButtonShow = phoneNumberHideButton.isDisplayed();
+        log().info("Czy ukryty Przycisk '...zobacz' przy nr. telefonu sie pokazuje: {}", isButtonShow);
         return isButtonShow;
     }
 
+    public  Footer emailFromFooter() {
+        WaitForElement.waitUntilElementIsVisible(mailtoEmailButton);
+        String  getWhiteTextEmail = mailtoEmailButton.getText();
+        log().info("Pobrano tekst z zaslonietego buttona: '{}'", getWhiteTextEmail);
+        return this;
+    }
+
+    public  Footer kopiujDoSchowkaButton() {
+        WaitForElement.waitUntilElementIsVisible(emailCopyToClipboard);
+        String  getTextFromCopyToClipboard = emailCopyToClipboard.getText();
+        log().info("Pobrano tekst z zaslonietego buttona: '{}'", getTextFromCopyToClipboard);
+        return this;
+    }
+
+    public Footer kopiujDoSchowkaButtonClick() { //booleana zrobic
+        WaitForElement.waitUntilElementIsVisible(emailCopyToClipboard);
+        emailCopyToClipboard.click();
+        log().info("Kliknięto w przycisk CopyToClipboard");
+        return this;
+    }
+
+    public  Footer skopiowanoButton() {
+        WaitForElement.waitUntilElementIsVisible(emailClipboardTextCopied);
+        String  getTextFromSkopiowano = emailClipboardTextCopied.getText();
+        log().info("Pobrano tekst z zaslonietego buttona: '{}'", getTextFromSkopiowano);
+        return this;
+    }
+
     public Footer clickOnZobaczPhoneButton() {
-        WaitForElement.waitUntilElementIsVisible(phoneViewOpenField);
-        phoneViewOpenField.click();
-        log().info("Czy klikniecie ukrytego 'Phone Number' dziala i odslania numer: {}", qualityExcitesLogoFooter);
+        WaitForElement.waitUntilElementIsVisible(phoneNumberHideButton);
+        phoneNumberHideButton.click();
+        log().info("Kliknięto w przycisk, pod którym schowany jest numer telefonu i Odkryto go w calosci");
+        return this;
+    }
+
+    public  Footer takeHideNumberText() {
+        WaitForElement.waitUntilElementIsVisible(phoneNumberHideButton);
+        String  hideNumberButton = phoneNumberHideButton.getText();
+        log().info("Pobrano tekst z zaslonietego buttona: '{}'", hideNumberButton);
+        return this;
+    }
+
+    public  Footer takeShowNumberText() {
+        WaitForElement.waitUntilElementIsVisible(phoneCallButton);
+        String  openNumberButton = phoneCallButton.getText();
+        log().info("Czy Pobrano poprawny numer telefonu: '{}'", openNumberButton);
         return this;
     }
 
     public boolean phoneAllNumberExpand() {
-        WaitForElement.waitUntilElementIsVisible(phoneViewOpenField);
-        boolean isPhoneNumberExpand = phoneViewOpenField.isDisplayed();
+        WaitForElement.waitUntilElementIsVisible(phoneCallButton);
+        boolean isPhoneNumberExpand = phoneCallButton.isDisplayed();
         log().info("Czy caly numer telefonu jest widoczny: {}", isPhoneNumberExpand);
         return isPhoneNumberExpand;
+    }
+
+    public  Footer takeWords() {
+        WaitForElement.waitUntilElementIsVisible(addressFooterField);
+        String  texts = addressFooterField.getText();
+        log().info("Czy Pobrano napisy przy mapce: '{}'", texts);
+        return this;
+    }
+
+    public boolean pictureBeforeMap() {
+        WaitForElement.waitUntilElementIsVisible(addressFooterFPPicture);
+        boolean isPictureCloseShow = addressFooterFPPicture.isDisplayed();
+        log().info("Czy ZDJECIE JEST WIDCOZNE przed kliknieciem w pokazanie sie mapki: {}", isPictureCloseShow);
+        return isPictureCloseShow;
+    }
+
+    public Footer clickOnZobaczNaMapieButton() {
+        WaitForElement.waitUntilElementIsVisible(addressFooterShowMap);
+        addressFooterShowMap.click();
+        log().info("Kliknięto w przycisk Zobacz na mapie");
+        return this;
+    }
+
+    public Footer clickOnCrossOnMapButton() {
+        WaitForElement.waitUntilElementIsVisible(crossButtonOnGoogleMap);
+        crossButtonOnGoogleMap.click();
+        log().info("Kliknięto w KRZYZYK na odsloniętej mapie");
+        return this;
     }
 
     public Footer clickOnQualityExcitesButton() {
@@ -144,4 +197,10 @@ public class Footer extends BasePage{
         return this;
     }
 
+    public Footer showOnGoogleMap() {
+        WaitForElement.waitUntilElementIsVisible(showOnGoogleMap);
+        showOnGoogleMap.click();
+        log().info("Kliknięto w przycisk kierującego na googleMaps");
+        return this;
+    }
 }
