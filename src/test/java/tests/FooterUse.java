@@ -26,14 +26,17 @@ public class FooterUse extends TestBase {
               .assertIsPictureBeforeMap()
               .assertIsStronaBiznesowaFooterLink()
               .assertIsBlogBiznesowyFooterLink()
-              .clickOnZobaczPhoneButton()
-              .takeHideNumberText()
-              .takeShowNumberText()
-              .emailFromFooter()
-              .kopiujDoSchowkaButton()
+              .emailFromFooter("praca@future-processing.com")
+              .kopiujDoSchowkaButton("kopiuj do schowka")
               .kopiujDoSchowkaButtonClick()
-              .skopiowanoButton()
-              .addressLocationFP()
+              .skopiowanoButton("skopiowano")
+              .clickOnZobaczPhoneButton()
+              .takeHideNumberText("...zobacz")
+              .takeShowNumberText("+48 32 461 23 00")
+              .addressLocationFP("Future Processing S.A.\n" +
+                      "ul. Bojkowska 37a\n" +
+                      "44-100 Gliwice\n" +
+                      "Zobacz na mapie")
               .clickOnQualityExcitesButton();
 
         DriverUtils.backToPage();

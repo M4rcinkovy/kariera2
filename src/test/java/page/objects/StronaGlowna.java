@@ -163,12 +163,12 @@ public class StronaGlowna extends BasePage {
     public StronaGlowna zczytanieListingTest() {
         Select writeFormDropDown = new Select(experienceField);
         List<WebElement> options = writeFormDropDown.getOptions();
-        List<String> namesOfOptions = new ArrayList<String>();
+        List<String> namesOfOptions = new ArrayList<>();
         for (WebElement option : options) {
             namesOfOptions.add(option.getText());
             System.out.println(option.getText());
         }
-        List<String> expectedNamesOfOptions = new ArrayList<String>();
+        List<String> expectedNamesOfOptions = new ArrayList<>();
         expectedNamesOfOptions.add("Wybierz jakie masz doświadczenie");
         expectedNamesOfOptions.add("Nie mam doświadczenia");
         expectedNamesOfOptions.add("< 1 rok");
@@ -223,7 +223,7 @@ public class StronaGlowna extends BasePage {
 
     @Step("Czy error z wiadomoscia sie wyswietla {errorHasText}")
     public StronaGlowna getInvalidFormMessage(String errorHasText) {
-        log().info("CHECKING IF warning message {} is displayed", errorHasText);
+        log().info("CHECKING IF warning message: '{}' is displayed", errorHasText);
         WaitForElement.waitUntilElementIsVisible(invalidResponse);
         AssertWebElement.assertThat(invalidResponse).isDisplayed().hasText(errorHasText);
         return this;
@@ -231,7 +231,7 @@ public class StronaGlowna extends BasePage {
 
     @Step("Czy wyslanie prawidlowo maila wyswietla prawidlowa wiadomosc: {correctHasText}")
     public StronaGlowna getPositiveFormMessage(String correctHasText) {
-        log().info("CHECKING if correct message {} is displayed", correctHasText);
+        log().info("CHECKING if correct message: '{}' is displayed", correctHasText);
         WaitForElement.waitUntilElementIsVisible(successResponse);
         AssertWebElement.assertThat(successResponse).isDisplayed().hasText(correctHasText);
         return this;
@@ -239,7 +239,7 @@ public class StronaGlowna extends BasePage {
 
     @Step("Jaki leci komunikat gdy chce sie zapisac 2-razy ten sam mail {doubleMailHasText}")
     public StronaGlowna getSameMailFormMessage(String doubleMailHasText) {
-        log().info("CHECKING IF same mail try to send twice:{} ", doubleMailHasText);
+        log().info("CHECKING IF same mail try to send twice: '{}' ", doubleMailHasText);
         WaitForElement.waitUntilElementIsVisible(alreadySubscribedError);
         AssertWebElement.assertThat(alreadySubscribedError).isDisplayed().hasText(doubleMailHasText);
         return this;

@@ -1,6 +1,7 @@
 package page.objects;
 
 import driver.manager.DriverManager;
+import generic.assertions.AssertWebElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -75,10 +76,10 @@ public class Footer extends BasePage{
     }
 
     @Step("Czy udalo sie pobrac tekst z 'mailto' ktory otwiera lokalnie przypisany program mailowy")
-    public  Footer emailFromFooter() {
+    public  Footer emailFromFooter(String  getWhiteTextEmail) {
+        log().info("Pobrano maila kontaktowego ze stopki, ktory brzmi: '{}'", getWhiteTextEmail);
         WaitForElement.waitUntilElementIsVisible(mailtoEmailButton);
-        String  getWhiteTextEmail = mailtoEmailButton.getText();
-        log().info("Pobrano tekst z widniejącego maila: '{}'", getWhiteTextEmail);
+        AssertWebElement.assertThat(mailtoEmailButton).isDisplayed().hasText(getWhiteTextEmail);
         return this;
     }
 
@@ -90,10 +91,10 @@ public class Footer extends BasePage{
     }
 
     @Step("Pobrano tekst z zaslonietego buttona emailowego")
-    public  Footer kopiujDoSchowkaButton() {
-        WaitForElement.waitUntilElementIsVisible(emailCopyToClipboard);
-        String  getTextFromCopyToClipboard = emailCopyToClipboard.getText();
+    public  Footer kopiujDoSchowkaButton(String getTextFromCopyToClipboard) {
         log().info("Pobrano tekst z zaslonietego buttona: '{}'", getTextFromCopyToClipboard);
+        WaitForElement.waitUntilElementIsVisible(emailCopyToClipboard);
+        AssertWebElement.assertThat(emailCopyToClipboard).isDisplayed().hasText(getTextFromCopyToClipboard);
         return this;
     }
 
@@ -106,10 +107,10 @@ public class Footer extends BasePage{
     }
 
     @Step("Pobrano tekst z zaslonietego buttona 'skopiowano'")
-    public  Footer skopiowanoButton() {
-        WaitForElement.waitUntilElementIsVisible(emailClipboardTextCopied);
-        String  getTextFromSkopiowano = emailClipboardTextCopied.getText();
+    public  Footer skopiowanoButton(String getTextFromSkopiowano) {
         log().info("Pobrano tekst z zaslonietego buttona mailowego: '{}'", getTextFromSkopiowano);
+        WaitForElement.waitUntilElementIsVisible(emailClipboardTextCopied);
+        AssertWebElement.assertThat(emailClipboardTextCopied).isDisplayed().hasText(getTextFromSkopiowano);
         return this;
     }
 
@@ -129,18 +130,18 @@ public class Footer extends BasePage{
     }
 
     @Step("Pobrano tekst z zasłoniętego buttona nr. telefonicznego")
-    public  Footer takeHideNumberText() {
+    public  Footer takeHideNumberText(String hideNumberButtonText) {
+        log().info("Pobrano tekst z zaslonietego buttona nr telefonu: '{}'", hideNumberButtonText);
         WaitForElement.waitUntilElementIsVisible(phoneNumberHideButton);
-        String  hideNumberButton = phoneNumberHideButton.getText();
-        log().info("Pobrano tekst z zaslonietego buttona nr telefonu: '{}'", hideNumberButton);
+        AssertWebElement.assertThat(phoneNumberHideButton).isDisplayed().hasText(hideNumberButtonText);
         return this;
     }
 
     @Step("Czy Pobrano poprawny numer telefonu")
-    public  Footer takeShowNumberText() {
-        WaitForElement.waitUntilElementIsVisible(phoneCallButton);
-        String  showAllNumberButton = phoneCallButton.getText();
+    public  Footer takeShowNumberText(String showAllNumberButton) {
         log().info("Czy Pobrano poprawny numer telefonu: '{}'", showAllNumberButton);
+        WaitForElement.waitUntilElementIsVisible(phoneCallButton);
+        AssertWebElement.assertThat(phoneCallButton).isDisplayed().hasText(showAllNumberButton);
         return this;
     }
 
@@ -152,10 +153,10 @@ public class Footer extends BasePage{
     }
 
     @Step("Czy Pobrano napisy przy mapce")
-    public  Footer addressLocationFP() {
-        WaitForElement.waitUntilElementIsVisible(addressAndLocalizationFooterInfo);
-        String  addressTextLocationFooter = addressAndLocalizationFooterInfo.getText();
+    public  Footer addressLocationFP(String addressTextLocationFooter) {
         log().info("Czy Pobrano napisy przy mapce: '{}'", addressTextLocationFooter);
+        WaitForElement.waitUntilElementIsVisible(addressAndLocalizationFooterInfo);
+        AssertWebElement.assertThat(addressAndLocalizationFooterInfo).isDisplayed().hasText(addressTextLocationFooter);
         return this;
     }
 
