@@ -33,14 +33,14 @@ public class Footer extends BasePage{
     @FindBy(xpath = "//a[contains(@data-elementname, 'Phone - call')]")
     private WebElement phoneCallButton;
 
-    @FindBy(xpath = "//a[contains(@data-elementname, 'Quality Excites')]")
-    private WebElement qualityExcitesLogoFooter;
+  /*  @FindBy(xpath = "//a[contains(@data-elementname, 'Quality Excites')]")
+    private WebElement qualityExcitesLogoFooter;*/
 
-    @FindBy(xpath = "//img[contains(@alt, 'Quality Meetup')]")
+    @FindBy(xpath = "//a[contains(@href, 'https://www.meetup.com/pl-PL/Quality-Meetup/')]")
     private WebElement qualityExcitesMeetUpLogoFooter;
 
-    @FindBy(xpath = "//img[contains(@alt, 'DPTO')]")
-    private WebElement dptoLogoFooter;
+ /*   @FindBy(xpath = "//img[contains(@alt, 'DPTO')]")
+    private WebElement dptoLogoFooter;*/
 
     @FindBy(className = "s-Footer__Address__Text")
     private WebElement addressAndLocalizationFooterInfo;
@@ -183,29 +183,29 @@ public class Footer extends BasePage{
         return this;
     }
 
-    @Step("Strona Quality Excites została wyświetlona po kliknięciu w buttona na footerze")
+    /*@Step("Strona Quality Excites została wyświetlona po kliknięciu w buttona na footerze")
     public Footer clickOnQualityExcitesButton() {
         WaitForElement.waitUntilElementIsVisible(qualityExcitesLogoFooter);
         qualityExcitesLogoFooter.click();
         log().info("Strona Quality Excites została wyświetlona po kliknięciu w buttona na footerze");
         return this;
-    }
+    }*/
 
     @Step("Strona Quality MeetUp została wyświetlona po kliknięciu w buttona na footerze")
-    public Footer clickOnQualityExcitesMeetUpButton() {
+    public Footer clickOnQualityExcitesMeetUpButton(String getTextFromHrefQualityMeetUp) {
+        log().info("Strona Quality MeetUp ma adres: '{}'", getTextFromHrefQualityMeetUp);
         WaitForElement.waitUntilElementIsVisible(qualityExcitesMeetUpLogoFooter);
-        qualityExcitesMeetUpLogoFooter.click();
-        log().info("Strona Quality MeetUp została wyświetlona po kliknięciu w buttona na footerze");
+        assertThat(qualityExcitesMeetUpLogoFooter).isDisplayed().hasText("getTextFromHrefQualityMeetUp");
         return this;
     }
 
-    @Step("Strona DPTO została wyświetlona po kliknięciu w buttona na footerze")
+   /* @Step("Strona DPTO została wyświetlona po kliknięciu w buttona na footerze")
     public Footer clickOnDPTOButton() {
         WaitForElement.waitUntilElementIsClickable(dptoLogoFooter);
         dptoLogoFooter.click();
         log().info("Strona DPTO została wyświetlona po kliknięciu w buttona na footerze");
         return this;
-    }
+    }*/
 
     @Step("Kliknięto w przycisk kierującego na Stronę googleMaps w nowej karcie")
     public Footer showOnGoogleMap() {

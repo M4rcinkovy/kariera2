@@ -186,21 +186,21 @@ public class StronaGlowna extends BasePage {
         Select formDropDown = new Select(experienceField);
         WaitForElement.waitUntilElementIsVisible(experienceField);
 
-        formDropDown.selectByValue("Nie mam doświadczenia");
+        /*formDropDown.selectByValue("Nie mam doświadczenia");
         assertEquals(formDropDown.getFirstSelectedOption().getText(), "Nie mam doświadczenia");
         log().info("Choose 'Nie mam doświadczenia'");
 
         formDropDown.selectByValue("< 1 rok");
         assertEquals(formDropDown.getFirstSelectedOption().getText(), "< 1 rok");
-        log().info("Choose '< 1 rok'");
+        log().info("Choose '< 1 rok'");*/
 
         formDropDown.selectByValue("2 - 5 lat");
         assertEquals(formDropDown.getFirstSelectedOption().getText(), "2 - 5 lat");
         log().info("Choose '2 - 5 lat'");
 
-        formDropDown.selectByValue("> 5 lat");
+        /*formDropDown.selectByValue("> 5 lat");
         assertEquals(formDropDown.getFirstSelectedOption().getText(), "> 5 lat");
-        log().info("Choose '> 5 lat");
+        log().info("Choose '> 5 lat");*/
 
         return this;
     }

@@ -37,7 +37,8 @@ public class FooterUse extends TestBase {
                       "ul. Bojkowska 37a\n" +
                       "44-100 Gliwice\n" +
                       "Zobacz na mapie")
-              .clickOnQualityExcitesButton();
+              .clickOnQualityExcitesMeetUpButton("https://www.meetup.com/pl-PL/Quality-Meetup/");
+              /*.clickOnQualityExcitesButton();
 
         DriverUtils.backToPage();
 
@@ -45,7 +46,7 @@ public class FooterUse extends TestBase {
         DriverUtils.backToPage();
 
         footer.clickOnDPTOButton();
-        DriverUtils.backToPage();
+        DriverUtils.backToPage();*/
 
         footer
                 .clickOnZobaczNaMapieButton()
